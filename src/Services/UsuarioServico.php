@@ -23,7 +23,7 @@ final class UsuarioServico
 
     public function listarTodos():array
     {
-        $sql = "SELECT id, nome, email, tipo FROM usuarios ORDER BY nome";
+        $sql = "SELECT id, nome, email, tipo FROM usuario ORDER BY nome";
 
         try {
             $consulta = $this->conexao->query($sql);
