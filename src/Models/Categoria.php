@@ -1,6 +1,7 @@
 <?php
+namespace Microblog\Models;
 
-class Categoria
+final class Categoria
 {
 
     private int $id;

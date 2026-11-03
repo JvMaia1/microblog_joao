@@ -1,6 +1,9 @@
 <?php
+namespace Microblog\Models;
 
-class Usuario
+use Microblog\Enums\TipoUsuario;
+
+final class Usuario
 {
     private int $id;
     private string $nome;
