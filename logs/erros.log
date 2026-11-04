@@ -1,0 +1,190 @@
+[2026-11-03 11:30:37]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost'
+
+[2026-11-03 11:34:51]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for http failed: Name or service not known
+
+[2026-11-04 08:51:08]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for http failed: Name or service not known
+
+[2026-11-04 08:51:08]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 38
+Mensagem: Erro ao conectar ao banco de dados. Contate o suporte.
+
+[2026-11-04 08:52:21]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for http failed: Name or service not known
+
+[2026-11-04 08:52:21]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 38
+Mensagem: Erro ao conectar ao banco de dados. Contate o suporte.
+
+[2026-11-04 08:52:25]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for http failed: Name or service not known
+
+[2026-11-04 08:52:25]
+Arquivo: /home/maia/projetos/microblog_joao/src/Database/ConexaoBD.php
+Linha: 38
+Mensagem: Erro ao conectar ao banco de dados. Contate o suporte.
+
+[2026-11-04 08:54:50]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'microblog.usuario' doesn't exist
+
+[2026-11-04 08:54:50]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:54:51]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'microblog.usuario' doesn't exist
+
+[2026-11-04 08:54:51]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:57:58]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:57:58]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:57:59]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:00]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:01]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:01]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:01]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:01]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:02]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:02]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:30]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:30]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:58:30]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:58:30]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
+[2026-11-04 08:59:22]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 29
+Mensagem: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'tipo' in 'field list'
+
+[2026-11-04 08:59:22]
+Arquivo: /home/maia/projetos/microblog_joao/src/Services/UsuarioServico.php
+Linha: 37
+Mensagem: Erro ao listar usuários
+
