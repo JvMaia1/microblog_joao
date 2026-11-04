@@ -1,4 +1,5 @@
 <?php
+namespace Microblog\Helpers;
 
 use Exception;
 use InvalidArgumentException;
@@ -73,11 +74,19 @@ class Utils
     public static function registrarLog(Throwable $e): void
     {
         $dataHora = new DateTimeImmutable('now', new DateTimeZone('America/Sao_Paulo'));
-        $mensagem = "[" . $dataHora->format("Y-m-d H:i:s") . "]\n" .
+        $mensagem = "[" . $dataHora->format("Y-m-d H:i:s") . "] " . get_class($e) . "\n" .
             "Arquivo: " . $e->getFile() . "\n" .
             "Linha: " . $e->getLine() . "\n" .
-            "Mensagem: " . $e->getMessage() . "\n\n";
+            "Mensagem: " . $e->getMessage() . "\n";
 
+        $causa = $e->getPrevious();
+        while ($causa !== null) {
+            $mensagem .= "Causa: [" . get_class($causa) . "] " . $causa->getMessage() .
+                " em " . $causa->getFile() . ":" . $causa->getLine() . "\n";
+            $causa = $causa->getPrevious();
+        }
+
+        $mensagem .= "\n";
 
         file_put_contents(__DIR__ . '/../../logs/erros.log', $mensagem, FILE_APPEND);
     }
