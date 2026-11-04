@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Microblog\Helpers\Utils as HelpersUtils;
 use Microblog\Services\UsuarioServico;
 use Microblog\Utils;
 use Microblog\Validacoes;
@@ -14,29 +15,37 @@ $email = '';
 $nivel_de_acesso = '';
 $senhaBruta = '';
 
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $nome = Utils::normalizarEntrada($_POST['nome'] ?? "");
-    $email = Utils::normalizarEntrada($_POST['email'] ?? "", 'email');
-    $nivel_de_acesso = Utils::normalizarEntrada($_POST['nivel_de_acesso'] ?? "");
-    $senhaBruta = $_POST['senha'];
+try{
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $nome = Utils::normalizarEntrada($_POST['nome'] ?? "");
+            $email = Utils::normalizarEntrada($_POST['email'] ?? "", 'email');
+            $nivel_de_acesso = Utils::normalizarEntrada($_POST['nivel_de_acesso'] ?? "");
+            $senhaBruta = $_POST['senha'];
+        
+            Validacoes::validarNome($nome);
+            Validacoes::validarEmail($email);
+            Validacoes::validarNivelDeAcesso($nivel_de_acesso);
+            Validacoes::validarSenha($senhaBruta);
+        
+            $senha = Utils::codificarSenha($senhaBruta);
+        
+            $tipoEnum = TipoEnum::from($nivel_de_acesso);
+        
+            $usuario = new Usuario($nome, $email, $tipoEnum, $senha, );
+        
+            $UsuarioServico = new UsuarioServico();
+        
+            $usuarioServico->inserir($usuario);
+        
+            header("location:usuarios.php");
+            exit;
+            
+} catch (InvalidArgumentException $e) {
+    $mensagemErro = $e->getMessage();
 
-    Validacoes::validarNome($nome);
-    Validacoes::validarEmail($email);
-    Validacoes::validarNivelDeAcesso($nivel_de_acesso);
-    Validacoes::validarSenha($senhaBruta);
-
-    $senha = Utils::codificarSenha($senhaBruta);
-
-    $tipoEnum = TipoEnum::from($nivel_de_acesso);
-
-    $usuario = new Usuario($nome, $email, $tipoEnum, $senha, );
-
-    $UsuarioServico = new UsuarioServico();
-
-    $usuarioServico->inserir($usuario);
-
-    header("location:usuarios.php");
-    exit;
+} catch (Throwable) {
+    Utils::registrarLog($mensagemErro);
+    $mensagemErro = "Não foi possível cadastrar o usuário. Tente novamente mais tarde.";
 }
 
 require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
