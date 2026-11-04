@@ -1,4 +1,37 @@
-<?php require_once __DIR__ . '/../includes/cabecalho-admin.php'; ?>
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+use Microblog\Utils;
+use Microblog\Validacoes;
+use Microblog\TipoEnum;
+use Microblog\Usuario;
+
+
+$mensagem = '';
+$nome = '';
+$email = '';
+$nivel_de_acesso = '';
+$senhaBruta = '';
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $nome = Utils::normalizarEntrada($_POST['nome'] ?? "");
+    $email = Utils::normalizarEntrada($_POST['email'] ?? "", 'email');
+    $nivel_de_acesso = Utils::normalizarEntrada($_POST['nivel_de_acesso'] ?? "");
+    $senhaBruta = $_POST['senha'];
+
+    Validacoes::validarNome($nome);
+    Validacoes::validarEmail($email);
+    Validacoes::validarNivelDeAcesso($nivel_de_acesso);
+    Validacoes::validarSenha($senhaBruta);
+
+    $senha = Utils::codificarSenha($senhaBruta);
+
+    $tipoEnum = TipoEnum::from($nivel_de_acesso);
+
+    $usuario = new Usuario($nome, $email, $tipoEnum, $senha, );
+}
+
+require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
+?>
 
 <div class="row">
     <article class="col-12 bg-white rounded shadow my-1 py-4">
@@ -13,8 +46,8 @@
                 <input class="form-control" type="email" id="email" name="email" value="pessoa@exemplo.com">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="senha">Senha:</label>
-                <input class="form-control" type="password" id="senha" name="senha">
+                <label class="form-label" for="nivel_de_acesso">Nível de acesso:</label>
+                <input class="form-control" type="text" id="nivel_de_acesso" name="nivel_de_acesso" value="editor">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="tipo">Tipo:</label>
