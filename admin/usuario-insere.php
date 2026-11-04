@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+
+use Microblog\Services\UsuarioServico;
 use Microblog\Utils;
 use Microblog\Validacoes;
 use Microblog\TipoEnum;
@@ -28,6 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $tipoEnum = TipoEnum::from($nivel_de_acesso);
 
     $usuario = new Usuario($nome, $email, $tipoEnum, $senha, );
+
+    $UsuarioServico = new UsuarioServico();
+
+    $usuarioServico->inserir($usuario);
+
+    header("location:usuarios.php");
+    exit;
 }
 
 require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
