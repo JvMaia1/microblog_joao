@@ -82,4 +82,24 @@ final class UsuarioServico
             throw new Exception("Erro ao buscar usuário por ID.");
         }
     }
+
+    public function atualizar(Usuario $usuario): void
+    {
+        $sql = "UPDATE usuarios 
+                    SET nome = :nome, email = :email, senha = :senha, tipo = :tipo
+                    WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $usuario->getNome());
+            $consulta->bindValue(":email", $usuario->getEmail());
+            $consulta->bindValue(":senha", $usuario->getSenha());
+            $consulta->bindValue(":tipo", $usuario->getTipoUsuario()->value);
+            $consulta->bindValue(":id", $usuario->getId());
+            $consulta->execute();
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao atualizar usuário");
+        }
+    }
 }
