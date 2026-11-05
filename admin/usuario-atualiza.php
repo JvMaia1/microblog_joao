@@ -1,6 +1,8 @@
 <?php
 
+use Microblog\Enums\TipoUsuario;
 use Microblog\Helpers\Utils;
+use Microblog\Helpers\Validacoes;
 use Microblog\Services\UsuarioServico;
 
 require_once __DIR__ . '/../vendor/autoload.php'; 
@@ -35,6 +37,26 @@ usando os dados do usuário (se disponíveis) */
 $nome = $dadosUsuario['nome'] ?? "";
 $email = $dadosUsuario['email'] ?? "";
 $tipo = $dadosUsuario['tipo'] ?? "";
+
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    try {
+        // Captura e normaliza os dados do formulário
+        $nome = Utils::normalizarEntrada($_POST['nome'] ?? "");
+        $email = Utils::normalizarEntrada($_POST['email'] ?? "", 'email');
+        $tipo = Utils::normalizarEntrada($_POST['tipo'] ?? "");
+
+        // Valida os dados e associa o tipo à Enumeração
+        Validacoes::validarNome($nome);
+        Validacoes::validarEmail($email);
+        Validacoes::validarTipo($tipo);
+        $tipoEnum = TipoUsuario::from($tipo);
+
+    } catch (InvalidArgumentException $e) {
+        
+    } catch (Throwable $e){
+
+    }
+}
 
 require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
 ?>
