@@ -1,7 +1,8 @@
 # Resumo do histórico da branch
 
-Branch analisada: `02_aula-0411`
-Período dos commits: 03/11/2026 a 04/11/2026
+Branch analisada: `03_aula-0511`
+
+Período dos commits: 03/11/2026 a 05/11/2026
 
 ## Principais pontos trabalhados
 
@@ -20,6 +21,9 @@ Período dos commits: 03/11/2026 a 04/11/2026
 5. **Busca e preenchimento do formulário de edição (`c23e544`, `40ffeb8`, `42f533a`)**
    `UsuarioServico` ganhou `buscarPorId(int $id)`, que consulta os dados da conta e retorna `null` quando não encontra registro; falhas de banco são registradas e convertidas em erro genérico. A página de edição normaliza e verifica o ID recebido pela URL, carrega a conta, informa quando não há usuário e preenche nome, e-mail e tipo com os dados encontrados, escapando os valores exibidos.
 
+6. **Atualização de usuários (`8b6ee29`, `4aea467`, `d578a5f`)**
+   `UsuarioServico` ganhou o método `atualizar(Usuario $usuario)`, que persiste nome, e-mail, senha e tipo por meio de uma instrução preparada e registra falhas de banco. O formulário de edição passou a processar envios POST, normalizar e validar nome, e-mail e tipo, criar o modelo e chamar o serviço; em caso de sucesso, redireciona à listagem. A senha atual é mantida quando o campo fica em branco. Quando preenchida, a nova senha é validada; se for igual à atual, mantém-se o hash existente, e, se diferente, é armazenada codificada. Erros de validação são apresentados, e falhas inesperadas são registradas e comunicadas com mensagem genérica.
+
 ## Estado resultante
 
-A branch avançou da listagem administrativa para o cadastro persistido de usuários e para o carregamento de dados existentes no formulário de edição. O fluxo de edição implementado busca e preenche os dados, mas ainda não persiste as alterações submetidas pelo formulário. A listagem, o cadastro e a busca registram erros técnicos no log e apresentam mensagens genéricas ao usuário.
+A branch inclui listagem e cadastro persistidos de usuários, além do fluxo de edição que busca os dados existentes, valida as alterações e as persiste. As senhas em branco permanecem inalteradas; novas senhas são validadas e codificadas. Falhas técnicas na listagem, no cadastro, na busca ou na atualização são registradas no log e apresentadas ao usuário por mensagens apropriadas.
