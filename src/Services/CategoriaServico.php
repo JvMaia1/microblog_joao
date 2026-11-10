@@ -66,6 +66,7 @@ final class CategoriaServico
         try {
             $consulta = $this->conexao->prepare($sql);
             $consulta->bindValue(":nome", $categoria->getNome());
+            $consulta->bindValue(":id", $categoria->getId());
             $consulta->execute();
         } catch (PDOException $e) {
             Utils::registrarLog($e);
