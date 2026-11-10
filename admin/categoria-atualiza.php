@@ -1,4 +1,28 @@
-<?php require_once __DIR__ . '/../includes/cabecalho-admin.php'; ?>
+<?php 
+use Microblog\Helpers\Utils;
+use Microblog\Helpers\Validacoes;
+use Microblog\Models\Categoria;
+use Microblog\Services\CategoriaServico;
+
+require_once __DIR__ . '/../vendor/autoload.php'; 
+
+$mensagemErro = "";
+$dadosCategoria = null;
+$categoriaServico = null;
+
+$id = Utils::normalizarEntrada($_GET['id'] ?? null, 'inteiro');
+Utils::verificarId($id);
+
+try {
+    $categoriaServico = new CategoriaServico();
+    $dadosCategoria = $categoriaServico->buscarPorId($id);
+} catch(Throwable $e){
+    Utils::registrarLog($e);
+    $mensagemErro = "Não foi possível carregar os dados da categoria";
+}
+
+require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
+?>
 
 <div class="row">
     <article class="col-12 bg-white rounded shadow my-1 py-4">
