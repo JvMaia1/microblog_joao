@@ -1,8 +1,8 @@
 # Resumo do histórico da branch
 
-Branch analisada: `03_aula-0511`
+Branch analisada: `04_exercicio-categorias`
 
-Período dos commits: 03/11/2026 a 05/11/2026
+Período dos commits: 03/11/2026 a 10/11/2026
 
 ## Principais pontos trabalhados
 
@@ -24,6 +24,18 @@ Período dos commits: 03/11/2026 a 05/11/2026
 6. **Atualização de usuários (`8b6ee29`, `4aea467`, `d578a5f`)**
    `UsuarioServico` ganhou o método `atualizar(Usuario $usuario)`, que persiste nome, e-mail, senha e tipo por meio de uma instrução preparada e registra falhas de banco. O formulário de edição passou a processar envios POST, normalizar e validar nome, e-mail e tipo, criar o modelo e chamar o serviço; em caso de sucesso, redireciona à listagem. A senha atual é mantida quando o campo fica em branco. Quando preenchida, a nova senha é validada; se for igual à atual, mantém-se o hash existente, e, se diferente, é armazenada codificada. Erros de validação são apresentados, e falhas inesperadas são registradas e comunicadas com mensagem genérica.
 
+7. **Listagem de categorias (`72307b8`, `af03442`, `fe506c2`, `905412c`)**
+   Foi criado `CategoriaServico` com consulta ordenada pelo nome. A página administrativa passou a carregar e renderizar as categorias do banco, exibir a quantidade de registros e oferecer operações de atualização e exclusão. Os nomes e IDs exibidos são escapados; falhas ao carregar a lista são registradas e mostradas com uma mensagem genérica.
+
+8. **Cadastro de categorias (`6f128ab`, `5436c83`, `b12a5c8`)**
+   O serviço ganhou a inserção de categorias com instrução preparada. O ID de `Categoria` tornou-se opcional para permitir a criação de registros sem ID prévio. O formulário valida o nome, preserva o valor digitado em caso de erro e, quando há sucesso, redireciona à listagem. Erros de validação são apresentados; falhas inesperadas são registradas e informadas genericamente.
+
+9. **Busca e atualização de categorias (`057e9eb`, `b15e495`, `d0377fc`, `b9ea650`)**
+   `CategoriaServico` passou a buscar uma categoria pelo ID e atualizá-la usando instrução preparada. A tela de edição valida o ID recebido, carrega e preenche os dados existentes, valida o nome enviado e associa o ID ao modelo antes de persistir. Categorias inexistentes e falhas de carregamento ou atualização recebem tratamento apropriado, com registro de falhas técnicas.
+
+10. **Exclusão de categorias e exibição de erros (`d49ae76`, `bbc241c`, `9c7bc27`)**
+    O serviço ganhou a exclusão por ID com consulta preparada e registro de erros. A página de exclusão normaliza e verifica o ID, redireciona para a listagem quando a operação termina e registra e apresenta uma mensagem genérica em caso de falha. Também foi incluída na edição de usuários a exibição, com escape HTML, das mensagens de erro já geradas pelo processamento do formulário.
+
 ## Estado resultante
 
-A branch inclui listagem e cadastro persistidos de usuários, além do fluxo de edição que busca os dados existentes, valida as alterações e as persiste. As senhas em branco permanecem inalteradas; novas senhas são validadas e codificadas. Falhas técnicas na listagem, no cadastro, na busca ou na atualização são registradas no log e apresentadas ao usuário por mensagens apropriadas.
+A branch inclui os fluxos administrativos de listagem, cadastro, edição e exclusão de categorias, além da listagem, cadastro e edição de usuários. Os formulários validam os dados, preservam os valores pertinentes após erros e exibem mensagens escapadas; as senhas em branco permanecem inalteradas e novas senhas são validadas e codificadas. As operações de persistência usam consultas preparadas, e falhas técnicas são registradas no log e comunicadas ao usuário por mensagens apropriadas.
