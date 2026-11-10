@@ -1,4 +1,22 @@
-<?php require_once __DIR__ . '/../includes/cabecalho-admin.php'; ?>
+<?php 
+require_once __DIR__ . '/../vendor/autoload.php'; 
+
+use Microblog\Helpers\Utils;
+use Microblog\Services\CategoriaServico;
+
+$mensagemErro = "";
+$listaDeCategorias = [];
+
+try {
+    $categoriaServico = new CategoriaServico();
+    $listaDeCategorias = $categoriaServico->listarTodos();
+} catch (Throwable $e) {
+    Utils::registrarLog($e);
+    $mensagemErro = "Não foi possível carregar a lista de categorias";
+}
+
+require_once __DIR__ . '/../includes/cabecalho-admin.php'; 
+?>
 
 <div class="row">
     <article class="col-12 bg-white rounded shadow my-1 py-4">
