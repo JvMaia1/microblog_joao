@@ -47,4 +47,21 @@ final class ControleDeAcesso
         }
     }
 
+    public static function login(int $id, string $nome, string $tipo): void
+    {
+        self::iniciarSessao();
+
+        // Cria as variáveis de sessão com alguns dados de quem está logando
+        $_SESSION['id'] = $id;
+        $_SESSION['nome'] = $nome;
+        $_SESSION['tipo'] = $tipo;
+    }
+
+    public static function logout(): void
+    {
+        self::iniciarSessao();
+        self::encerrarSessao();
+        header("location:../login.php?logout");
+        exit;
+    }
 }
