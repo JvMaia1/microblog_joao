@@ -1,6 +1,11 @@
 <?php
+namespace Microblog\Services;
+
+use Exception;
 use Microblog\Database\ConexaoBD;
 use Microblog\Helpers\Utils;
+use PDO;
+use PDOException;
 
 final class CategoriaServico
 {
