@@ -2,8 +2,12 @@
 
 use Microblog\Helpers\Utils;
 use Microblog\Services\UsuarioServico;
+use Microblog\Auth\ControleDeAcesso;
 
 require_once __DIR__ . "/../vendor/autoload.php";
+
+ControleDeAcesso::exigirAdmin();
+
 
 $mensagemErro = "";
 $listaDeUsuarios = [];
