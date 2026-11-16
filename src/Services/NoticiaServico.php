@@ -52,6 +52,35 @@ final class NoticiaServico
         }
     }
 
+    public function buscarPorId(int $id, TipoUsuario $tipoUsuario, int $usuarioId): ?array
+    {
+        $sql = "SELECT noticias.id, noticias.data, noticias.titulo, noticias.texto,
+                       noticias.resumo, noticias.imagem, noticias.destaque,
+                       noticias.usuario_id, noticias.categoria_id, usuarios.nome AS autor
+                FROM noticias
+                LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id
+                WHERE noticias.id = :id";
+
+        if ($tipoUsuario === TipoUsuario::EDITOR) {
+            $sql .= " AND noticias.usuario_id = :usuario_id";
+        }
+
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $id);
+
+            if ($tipoUsuario === TipoUsuario::EDITOR) {
+                $consulta->bindValue(":usuario_id", $usuarioId);
+            }
+
+            $consulta->execute();
+            return $consulta->fetch() ?: null;
+        } catch (PDOException $e) {
+            Utils::registrarLog($e);
+            throw new Exception("Erro ao buscar notícia por ID.");
+        }
+    }
+
     public function inserir(Noticia $noticia): void
     {
         $sql = "INSERT INTO noticias (
