@@ -1,0 +1,10 @@
+[2026-11-16 08:35:55]
+Arquivo: C:\xampp\htdocs\microblog-tiago\src\Database\ConexaoBD.php
+Linha: 25
+Mensagem: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+
+[2026-11-16 08:35:55]
+Arquivo: C:\xampp\htdocs\microblog-tiago\src\Database\ConexaoBD.php
+Linha: 38
+Mensagem: Erro ao conectar ao banco de dados. Contate o suporte.
+
