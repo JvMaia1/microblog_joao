@@ -37,15 +37,19 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
 - O código usa enums nativos, portanto requer uma versão de PHP com suporte a
   enums.
 - O Composer configura o prefixo PSR-4 `Microblog\` para `src/`.
-  As páginas carregam `vendor/autoload.php` com `require_once`.
+  As páginas carregam `vendor/autoload.php` com `require_once`; `composer.lock`
+  registra o estado das dependências Composer.
 - Importe `_materiais/microblog_2026_completo.sql` para criar/preencher o banco
   `microblog_2026`. O script `_materiais/microblog_2026_inicial.sql` é uma
   alternativa inicial. `modelagem-fisica.md` contém uma modelagem antiga,
   com o nome de banco `microblog_2025`; não a trate como fonte atual do banco.
-- A conexão está em `src/Database/ConexaoBD.php`. Ela usa atualmente
-  `localhost`, usuário `root`, senha vazia e banco `microblog_2026`; adapte as
-  configurações ao ambiente local e não adicione credenciais reais ao
-  repositório.
+- A conexão está em `src/Database/ConexaoBD.php` e contém valores locais
+  definidos diretamente na classe. Revise-os para cada ambiente; não assuma que
+  as configurações de uma máquina servem para outra e não adicione credenciais
+  reais ao repositório.
+- As imagens usadas pelo site e pelos uploads ficam em `images/`. Os arquivos
+  de imagem que foram mantidos no projeto foram organizados nessa pasta; não
+  trate `_materiais/Fotos/` como destino atual de upload.
 - Não há scripts de teste ou ferramentas de lint configurados no `composer.json`.
   Para validar PHP alterado, use `php -l caminho/do/arquivo.php` quando o PHP
   estiver disponível.
@@ -141,11 +145,17 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   atualização e exclusão.
 - `NoticiaServico` tem `listarTodos(TipoUsuario $tipoUsuario, int $usuarioId)`,
   que retorna todas as notícias com autor para admin e apenas as do usuário
-  informado para editor, além de `inserir(Noticia $noticia)`. Não presumir que
-  busca, atualização ou exclusão de notícia já estejam implementadas.
+  informado para editor; `buscarPorId()`, que carrega os dados e o autor da
+  notícia, permite qualquer notícia para admin e restringe editor às notícias
+  próprias; e `inserir(Noticia $noticia)`. Atualização e exclusão de notícias
+  ainda não estão implementadas no serviço.
 - `admin/noticia-insere.php` integra categorias, validação, upload e inserção.
-- `admin/noticia-atualiza.php` e `admin/noticia-exclui.php` ainda são páginas
-  provisórias; não as trate como fluxos completos.
+- `admin/noticia-atualiza.php` recebe o ID por `GET` (o link em
+  `admin/noticias.php` usa `noticia-atualiza.php?id=...`), exige login e carrega
+  a notícia de acordo com o perfil. Exibe os campos, a imagem atual e todas as
+  categorias, deixando selecionada a categoria associada à notícia. O formulário
+  ainda não processa nem persiste a atualização e seu botão está desabilitado.
+- `admin/noticia-exclui.php` ainda é uma página provisória.
 - As páginas públicas (`index.php`, `noticia.php`,
   `noticias-por-categoria.php` e `resultados.php`) e alguns conteúdos de
   navegação/listagem ainda contêm dados ou marcação provisórios estáticos.
