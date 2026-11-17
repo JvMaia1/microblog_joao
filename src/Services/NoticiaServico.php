@@ -91,7 +91,7 @@ final class NoticiaServico
         $sql = "SELECT id, titulo, resumo, imagem
                 FROM noticias
                 WHERE destaque = :destaque
-                ORDER BY data DESC";
+                ORDER BY data DESC, id DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -109,7 +109,7 @@ final class NoticiaServico
     {
         $sql = "SELECT id, titulo, data, resumo
                 FROM noticias
-                ORDER BY data DESC";
+                ORDER BY data DESC, id DESC";
 
         try {
             $consulta = $this->conexao->query($sql);
@@ -128,7 +128,7 @@ final class NoticiaServico
                 FROM noticias
                 LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id
                 WHERE noticias.categoria_id = :categoria_id
-                ORDER BY noticias.data DESC";
+                ORDER BY noticias.data DESC, noticias.id DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
@@ -170,7 +170,7 @@ final class NoticiaServico
                 WHERE titulo LIKE :termo
                    OR resumo LIKE :termo
                    OR texto LIKE :termo
-                ORDER BY data DESC";
+                ORDER BY data DESC, id DESC";
 
         try {
             $consulta = $this->conexao->prepare($sql);
