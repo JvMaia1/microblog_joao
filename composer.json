@@ -3,5 +3,8 @@
         "psr-4" : {
             "Microblog\\" : "src/"
         }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^7.2"
     }
 }
