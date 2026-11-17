@@ -371,6 +371,36 @@ navegação real (sem erros de console).
 
 ---
 
+## Prompt 11 — auditoria do plano no Plan Council
+
+**Objetivo:** submeter o plano ao conselho multi-modelo antes de encerrar a
+entrega, para caçar furos que o autor não vê.
+
+**Prompt:**
+
+```text
+Antes de fechar esta entrega, prepare o plano de implementação deste trabalho
+(arquivos, contratos de dados, fases, matriz de verificação e riscos) e
+submeta-o ao Plan Council, junto com o contexto do projeto.
+
+Ao receber o parecer, faça a triagem: para cada ressalva, confirme no código se
+ela procede, aplique o que for ajuste real e registre no plano o que foi aceito
+e o que foi mantido de propósito (com a justificativa).
+```
+
+**Resultado:** veredito APROVADO por consenso (3/3). Uma ressalva procedente foi
+aplicada (desempate `id DESC` na ordenação das consultas públicas); as demais ou
+já estavam implementadas, ou foram mantidas por fidelidade ao site de
+referência. A suíte de testes formal foi dispensada nesta rodada por decisão do
+desenvolvedor.
+
+**Verificação:** execução do script do conselho (saída registrada em
+`docs/council_report.md`, com o diálogo entre modelos anexado ao final de
+`implementation_plan.md`) e conferência da ressalva aplicada por consulta
+repetida (ordem estável) e por `php -l`.
+
+---
+
 ## Histórico anterior (branch `09_aula-1611`)
 
 ### 1. Pedir pra IA analisar o projeto no estado atual

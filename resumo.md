@@ -23,7 +23,9 @@ provisório estático. O `js/busca.js` estava vazio (apenas `'use strict';`).
    `listarPorCategoria()`, `buscarPorIdPublico()` e `buscarPorTermo()`. São
    métodos de leitura sem sessão/perfil, que seguem o padrão de erro dos
    serviços existentes (`PDOException` registrada em log e `Exception` genérica
-   para a interface). Os métodos administrativos não foram alterados.
+   para a interface). Os métodos administrativos não foram alterados. A
+   ordenação usa `data DESC, id DESC` (desempate determinístico apontado pelo
+   Plan Council).
 
 2. **Menu de categorias dinâmico (`ef1b3a7`)**
    `includes/cabecalho.php` passou a carregar o autoload e a montar o menu com
