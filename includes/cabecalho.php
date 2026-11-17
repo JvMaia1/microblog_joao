@@ -1,3 +1,22 @@
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Microblog\Helpers\Utils;
+use Microblog\Services\CategoriaServico;
+
+/* O menu de categorias é alimentado pelo banco de dados.
+Uma falha de conexão não pode impedir a exibição da página:
+registramos o erro em log e o menu fica apenas vazio. */
+$categoriasMenu = [];
+
+try {
+  $categoriaServico = new CategoriaServico();
+  $categoriasMenu = $categoriaServico->listarTodos();
+} catch (Throwable $e) {
+  Utils::registrarLog($e);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br" class="h-100">
 
@@ -28,10 +47,11 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                <li><a class="dropdown-item" href="noticias-por-categoria.php?id=1">Desenvolvimento</a></li>
-                <li><a class="dropdown-item" href="noticias-por-categoria.php?id=2">Tecnologia</a></li>
-                
+                <?php foreach ($categoriasMenu as $categoriaMenu): ?>
+                  <li>
+                    <a class="dropdown-item" href="noticias-por-categoria.php?id=<?= Utils::escaparHtml($categoriaMenu['id']) ?>"><?= Utils::escaparHtml($categoriaMenu['nome']) ?></a>
+                  </li>
+                <?php endforeach; ?>
               </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="admin/index.php"><i class="bi bi-lock-fill"></i> Área administrativa</a></li>
