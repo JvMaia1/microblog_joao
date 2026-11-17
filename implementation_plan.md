@@ -109,3 +109,9 @@ desenvolvedor nesta rodada; a verificação usada está listada em `resumo.md`.
 
 ## Deliberação do Conselho & Diálogo entre Modelos
 <!-- Seção gerenciada pelo plan-council.ts: anexa notas sucintas dos modelos a cada rodada -->
+
+
+### Rodada 1 (2026-11-17 12:15)
+- **deepseek/deepseek-v3.2** (`APROVADO`): Concordo no essencial: plano é mínimo, DB-first e sem overengineering; não deve ser bloqueado por melhorias futuras. - Alerta prioritário: validar `categoria_id`, capturar `Exception` nas páginas/`resultados.php` e confirmar collation/compatibilidade MySQL 8.0/PHP 8.3. - Se outro parecerista pedir `LIMIT`, full-text ou testes automatizados extensos, tratar como evolução, não como bloqueio.
+- **meta/muse-spark-1.3-contributor** (`APROVADO`): Converjo que plano é fiel ao original e DB-first sem hardcode; único ponto a vigiar pelos pares é guard de termo vazio/GET e `try/catch` nas páginas. Não vejo base para RESSALVAS/REJEITADO.
+- **xiaomi/mimo-v2.6-pro** (`APROVADO`): Concordo com a arquitetura e o corte de escopo; meu único alerta prioritário é o `response.ok` ausente no `busca.js` — erro HTTP vira HTML injetado no DOM. Discordo de quem exigir rollback/transação: são só operações de leitura, não há risco de perda de dados. Questiono apenas a determinismo da ordenação sem `id` como desempate.
