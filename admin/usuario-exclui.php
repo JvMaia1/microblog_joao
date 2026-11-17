@@ -11,6 +11,10 @@ ControleDeAcesso::exigirAdmin();
 $id = Utils::normalizarEntrada($_GET['id'] ?? null, 'inteiro');
 Utils::verificarId($id);
 
+if($_SESSION['id'] === $id){
+    Utils::alertaErro("Não é possivel apagar a propria conta.");
+}
+
 try {
     $usuario = new UsuarioServico();
     $usuario->excluir($id);
