@@ -28,7 +28,7 @@ campoBusca.addEventListener("input", function () {
 
 function esconderResultados() {
     divResultados.setAttribute("hidden", "");
-    divResultados.innerHTML = "";
+    divResultados.replaceChildren();
     divResultados.setAttribute("aria-busy", "false");
 }
 
@@ -56,7 +56,9 @@ async function realizarBusca(numeroBusca) {
             return;
         }
 
-        divResultados.innerHTML = dados;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(dados, "text/html");
+        divResultados.replaceChildren(...doc.body.childNodes);
     } catch (error) {
         if (numeroBusca !== buscaAtual) {
             return;
