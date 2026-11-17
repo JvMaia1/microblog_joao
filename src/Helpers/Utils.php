@@ -88,6 +88,18 @@ class Utils
         return date("d/m/Y H:i", strtotime($data));
     }
 
+    // Formato exigido pelo atributo datetime do elemento <time> (ISO 8601)
+    public static function formataDataIso(string $data): string
+    {
+        return date("Y-m-d\TH:i:s", strtotime($data));
+    }
+
+    // Nome exibido quando a notícia não possui autor associado
+    public static function nomeAutor(?string $autor): string
+    {
+        return ($autor ?? "") !== "" ? $autor : "Equipe Microblog";
+    }
+
     public static function codificarSenha(string $senha): string
     {
         return password_hash($senha, PASSWORD_DEFAULT);
