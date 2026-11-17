@@ -115,6 +115,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   conteúdo em atributos e mensagens. Não confunda normalização de entrada com
   escape de saída.
 - `Utils::registrarLog()` aceita `Throwable` e grava em `logs/erros.log`.
+- Datas exibidas usam `Utils::formataData()` (dia/mês/ano com hora); o atributo
+  `datetime` do elemento `<time>` usa `Utils::formataDataIso()` (ISO 8601).
+  `Utils::nomeAutor()` centraliza a exibição do autor e devolve
+  "Equipe Microblog" quando a notícia não tem autor associado.
 - Senhas novas são processadas por `Utils::codificarSenha()`/`password_hash`;
   use `password_verify()` para autenticar. Na atualização, campo de senha vazio
   mantém o hash atual; `Utils::verificarSenha()` evita re-hash quando a senha
@@ -149,6 +153,10 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   notícia, permite qualquer notícia para admin e restringe editor às notícias
   próprias; e `inserir(Noticia $noticia)`. Atualização e exclusão de notícias
   ainda não estão implementadas no serviço.
+- Para a área pública existem métodos de leitura sem sessão/perfil:
+  `listarDestaques()`, `listarTodas()`, `listarPorCategoria(int $categoriaId)`,
+  `buscarPorIdPublico(int $id)` e `buscarPorTermo(string $termo)`. Não confunda
+  `listarTodas()` (público) com `listarTodos()` (administrativo).
 - `admin/noticia-insere.php` integra categorias, validação, upload e inserção.
 - `admin/noticia-atualiza.php` recebe o ID por `GET` (o link em
   `admin/noticias.php` usa `noticia-atualiza.php?id=...`), exige login e carrega
@@ -157,10 +165,13 @@ As páginas públicas ficam na raiz: `index.php`, `noticia.php`,
   ainda não processa nem persiste a atualização e seu botão está desabilitado.
 - `admin/noticia-exclui.php` ainda é uma página provisória.
 - As páginas públicas (`index.php`, `noticia.php`,
-  `noticias-por-categoria.php` e `resultados.php`) e alguns conteúdos de
-  navegação/listagem ainda contêm dados ou marcação provisórios estáticos.
-  Confira a implementação atual antes de assumir que o README descreve
-  funcionalidades dinâmicas já concluídas.
+  `noticias-por-categoria.php` e `resultados.php`) são dinâmicas: consultam o
+  banco pelas classes de serviço e escapam a saída. `includes/todas.php` lista
+  todas as notícias e é incluído por várias páginas. `includes/cabecalho.php`
+  monta o menu de categorias a partir do banco e carrega o autoload.
+- A busca do cabeçalho usa `js/busca.js` (`fetch` POST em `resultados.php`, com
+  debounce) e `resultados.php` devolve apenas um fragmento HTML; ele não é uma
+  página completa.
 
 ## Orientações para alterações
 
